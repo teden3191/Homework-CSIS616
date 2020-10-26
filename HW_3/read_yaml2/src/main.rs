@@ -91,8 +91,8 @@ fn main() {
     // Get a state structure for the DFA
     let state_graph = StateGraph::new_from_dfa(&dfa);
 
-    //println!("{:?}", state_graph);
-    //state_graph.write_graphviz();
+    println!("{:?}", state_graph);
+    state_graph.write_graphviz();
 
     // Get String to Validate against DFA
     let vinput = get_inputstring();
@@ -280,31 +280,31 @@ impl StateGraph<> {
         }
     }
 
-    ////// Write the graph to stdout
-    // fn write_graphviz(&self) {
+    //// Write the graph to stdout
+    fn write_graphviz(&self) {
 
-    //     println!("digraph {{");
-    //     println!("\trankdir=LR;");
-    //     println!("\tnode [shape=point]; start;");
+        println!("digraph {{");
+        println!("\trankdir=LR;");
+        println!("\tnode [shape=point]; start;");
         
-    //     for (n, state) in self.states.iter().enumerate() {
-    //         if state.accept_state {
-    //             println!("\tnode [shape=doublecircle]; q{};", n+1);
-    //         }
-    //     }
+        for (n, state) in self.states.iter().enumerate() {
+            if state.accept_state {
+                println!("\tnode [shape=doublecircle]; q{};", n+1);
+            }
+        }
         
-    //     println!("\tnode [shape=circle];");
-    //     println!("\tstart -> q{}", self.start_state+1);
+        println!("\tnode [shape=circle];");
+        println!("\tstart -> q{}", self.start_state+1);
 
-    //     for (n, state) in self.states.iter().enumerate() {
+        for (n, state) in self.states.iter().enumerate() {
 
-    //         for (i, ch) in self.alphabet.iter().enumerate() {
-    //             println!("\tq{} -> q{} [label=\"{}\"];", n+1, state.transitions[i] + 1, ch);
-    //         }
-    //     }
+            for (i, ch) in self.alphabet.iter().enumerate() {
+                println!("\tq{} -> q{} [label=\"{}\"];", n+1, state.transitions[i] + 1, ch);
+            }
+        }
 
-    //     println!("}}");
-    // }
+        println!("}}");
+    }
 
     // Result Method
 }
